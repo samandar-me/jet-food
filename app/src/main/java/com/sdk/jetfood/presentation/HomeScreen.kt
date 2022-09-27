@@ -6,14 +6,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import com.sdk.jetfood.R
 import com.sdk.jetfood.presentation.component.ShowError
@@ -30,7 +29,13 @@ fun HomeScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.app_name))
+                    Text(
+                        text = stringResource(id = R.string.app_name), fontFamily = FontFamily(
+                            fonts = listOf(
+                                Font(R.font.nunito_bold)
+                            )
+                        )
+                    )
                 },
                 backgroundColor = Color.White,
                 elevation = 5.dp
@@ -42,7 +47,7 @@ fun HomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            when(val res = result) {
+            when (val res = result) {
                 is Result.Loading -> {
                     ShowLoading()
                 }

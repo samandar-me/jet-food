@@ -13,15 +13,18 @@ import org.koin.core.scope.get
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 
 val myModule = module {
     single {
         OkHttpClient.Builder()
+            .callTimeout(60, TimeUnit.SECONDS)
+            .connectTimeout(60, TimeUnit.SECONDS)
             .addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build()
     }
     single<JetService> {
         Retrofit.Builder()
-            .baseUrl("https://gist.githubusercontent.com/vipulasri/8bd2115e50fd73272ea8de08cd54b9d5/raw/")
+            .baseUrl("https://www.themealdb.com/")
             .addConverterFactory(MoshiConverterFactory.create())
             .client(get())
             .build()

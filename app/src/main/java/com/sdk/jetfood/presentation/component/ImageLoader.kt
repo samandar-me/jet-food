@@ -16,14 +16,13 @@ import com.google.accompanist.coil.rememberCoilPainter
 @Composable
 fun ImageLoader(
     modifier: Modifier = Modifier,
-    image: String,
-    color: Color? = null
+    image: String
 ) {
     val painter = rememberCoilPainter(request = image)
     Image(
         modifier = modifier,
         painter = painter,
         contentDescription = "",
-        colorFilter = ColorFilter.tint(color ?: Color.LightGray)
+        contentScale = ContentScale.Crop,
     )
 }

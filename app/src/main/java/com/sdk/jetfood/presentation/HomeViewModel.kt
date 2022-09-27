@@ -18,6 +18,10 @@ class HomeViewModel(
     private val _result: MutableStateFlow<Result<List<Food>>> = MutableStateFlow(Result.Loading)
     val result: StateFlow<Result<List<Food>>> get() = _result
 
+    init {
+        getAllFoodList()
+    }
+
     fun getAllFoodList() {
         viewModelScope.launch {
             repository.getAllFoods().collectLatest {
